@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <style>
+        body {
+            background: #008080;
+            color: white;
+            font-family: fantasy;
+            font-size: 2em;
+            /* This centers the canvas because its an inline element??? */
+            text-align: center;
+        }
+
+        #tetris {
+            background-color: black;
+            border: solid .2em white;
+            height: 90vh;
+        }
+
+        .center { 
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        #play {
+            background-color: rgb(67, 66, 66);
+            color: white;
+            border-radius: 5%;
+            border-color: white;
+            width: 5%;
+        }
+        
+        #play:hover {
+            cursor: pointer;
+        }
+
+        #play:active {
+            background-color: rgb(100, 93, 93);
+            box-shadow: 0 2px #666;
+        }
+    </style>
+</head>
+<body>
+    <button class="center" id="play" onClick="play()">Play</button>
+    <div id="score"></div>
+    <canvas id="tetris" width="240" height="400"></canvas>
+    <script src="tetris.js"></script>
+</body>
+</html>
