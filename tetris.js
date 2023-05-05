@@ -257,9 +257,9 @@ document.addEventListener('keydown', e => {
         playerDrop();
     } else if (e.key ==='ArrowUp'){
         playerHardDrop();
-    } else if (e.key === 'a'){
+    } else if (e.key === 'q' || e.key === 'Q'){
         playerRotate(-1);
-    } else if (e.key === 'd'){
+    } else if (e.key === 'w' || e.key === 'W'){
         playerRotate(1);
     }
 });
