@@ -8,9 +8,15 @@
 <body>
     <script type="module">
         import __wbg_init from "./ball-game.js";
-        __wbg_init();
+        try{
+            __wbg_init();
+        } catch (error) {
+            console.log("caught error: ");
+            console.error(error);
+        }
+        
     </script>
-    
+
     <!-- taken from wasm-server-runner -->
     <script>
         document.body.addEventListener("contextmenu", (e) => {
