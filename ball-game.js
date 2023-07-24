@@ -417,6 +417,8 @@ function __wbg_get_imports() {
             // console.error(getStringFromWasm0(arg0, arg1));
         } finally {
             wasm.__wbindgen_free(deferred0_0, deferred0_1, 1);
+            let div = document.createElement('div');
+            div.innerHTML = 'Something went wrong.';
         }
     };
     imports.wbg.__wbg_crypto_c48a774b022d20ac = function(arg0) {
