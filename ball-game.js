@@ -414,7 +414,7 @@ function __wbg_get_imports() {
         try {
             deferred0_0 = arg0;
             deferred0_1 = arg1;
-            // console.error(getStringFromWasm0(arg0, arg1));
+            console.error(getStringFromWasm0(arg0, arg1));
         } finally {
             wasm.__wbindgen_free(deferred0_0, deferred0_1, 1);
         }
@@ -1637,8 +1637,7 @@ function __wbg_get_imports() {
         getInt32Memory0()[arg0 / 4 + 0] = ptr1;
     };
     imports.wbg.__wbg_error_c9309504864e78b5 = function(arg0, arg1) {
-        // console.error(getObject(arg0), getObject(arg1));
-        return;
+        console.error(getObject(arg0), getObject(arg1));
     };
     imports.wbg.__wbg_pressed_d881ce4add9c474b = function(arg0) {
         const ret = getObject(arg0).pressed;
