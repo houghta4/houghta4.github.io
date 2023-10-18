@@ -1,88 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bevy ball-game</title>
+    <title>Sliding Puzzle</title>
+    <link rel="stylesheet" href="puzzle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="puzzle.js"></script>
 </head>
+
 <body>
-    <div style="position: absolute; z-index: -1;">If you see this you do not have the right GPU/drivers for Vulkan.</div>
-    <script type="module">
-        import __wbg_init from "./ball-game.js";
-        __wbg_init();
-        
-        
-    </script>
+    <div class="instructions">
+        <h3>Upload an image to have it broken apart and randomized into tiles</h3>
+        <h3>Change the size to an N x N grid</h3>
+        <h3>Slide each tile around to put you picture back together</h3>
+        <h3>(Some layouts will not be solvable... so far)</h3>
+    </div>
+    <h3 id="turn-container" style="display: none">
+        Turns: <span id="turns">0</span>
+    </h3>
+    <div id="game-board" class="checker-bg" style="display: none"></div>
 
-    <!-- taken from wasm-server-runner -->
-    <script>
-        document.body.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-        });
+    <div id="size-container" class="size-container" title="N x N size of puzzle">
+        <button id="minus" class="plus-minus" title="Decrease size of puzzle by one">-</button>
+        <input type="number" id="num" value="1" />
+        <button id="plus" class="plus-minus" title="Increase size of puzzle by one">+</button>
+    </div>
+    <div class="file-container">
+        <label class="file-upload">
+            <input id="file-select" type="file" name="file">
+            <i class="fa fa-cloud-upload"></i> &nbsp;Choose image
+        </label>
+    </div>
 
-        // Insert hack to make sound autoplay on Chrome as soon as the user interacts with the tab:
-        // https://developers.google.com/web/updates/2018/11/web-audio-autoplay#moving-forward
-
-        // the following function keeps track of all AudioContexts and resumes them on the first user
-        // interaction with the page. If the function is called and all contexts are already running,
-        // it will remove itself from all event listeners.
-        (function () {
-            // An array of all contexts to resume on the page
-            const audioContextList = [];
-
-            // An array of various user interaction events we should listen for
-            const userInputEventNames = [
-                "click",
-                "contextmenu",
-                "auxclick",
-                "dblclick",
-                "mousedown",
-                "mouseup",
-                "pointerup",
-                "touchend",
-                "keydown",
-                "keyup",
-            ];
-
-            // A proxy object to intercept AudioContexts and
-            // add them to the array for tracking and resuming later
-            self.AudioContext = new Proxy(self.AudioContext, {
-                construct(target, args) {
-                    const result = new target(...args);
-                    audioContextList.push(result);
-                    return result;
-                },
-            });
-
-            // To resume all AudioContexts being tracked
-            function resumeAllContexts(_event) {
-                let count = 0;
-
-                audioContextList.forEach((context) => {
-                    if (context.state !== "running") {
-                        context.resume();
-                    } else {
-                        count++;
-                    }
-                });
-
-                // If all the AudioContexts have now resumed then we unbind all
-                // the event listeners from the page to prevent unnecessary resume attempts
-                // Checking count > 0 ensures that the user interaction happens AFTER the game started up
-                if (count > 0 && count === audioContextList.length) {
-                    userInputEventNames.forEach((eventName) => {
-                        document.removeEventListener(eventName, resumeAllContexts);
-                    });
-                }
-            }
-
-            // We bind the resume function for each user interaction
-            // event on the page
-            userInputEventNames.forEach((eventName) => {
-                document.addEventListener(eventName, resumeAllContexts);
-            });
-        })();
-    </script>
 </body>
+
 </html>
